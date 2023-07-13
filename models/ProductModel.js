@@ -14,6 +14,6 @@ const Product = db.define('product', {
 
 export default Product;
 
-(async()=>{
-    await db.sync();
-})(); // fungsi ini langsung dipanggil atau langsung dijalankan
+// (async()=>{
+//     await db.sync(); // otomatis membuat tabel yg ada pada model jika belum ada
+// })(); // fungsi ini langsung dipanggil atau langsung dijalankan
