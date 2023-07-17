@@ -6,9 +6,11 @@ import {
     updateProduct,
     deleteProduct
 } from "../controllers/ProductController.js";
+import { verifyToken } from "../middleware/VerifyToken.js";
 
 const router = express.Router();
 
+router.use('/products', verifyToken); // Middleware for all route products (like GROUP)
 router.get('/products', getProducts);
 router.get('/products/:id', getProductById);
 router.post('/products', saveProduct);

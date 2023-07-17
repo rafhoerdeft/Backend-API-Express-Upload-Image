@@ -1,6 +1,6 @@
 ### SHOW ALL USER
 GET http://localhost:8000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJSYWZobyIsImVtYWlsIjoicmFmaG9AZ21haWwuY29tIiwiaWF0IjoxNjg5MTMzNjYzLCJleHAiOjE2ODkxMzM2ODN9.y6NgiJp-YBN7dhMCuMlSB-JLC3zM44ROKcsPwsQxNC0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJSYWZobyIsImVtYWlsIjoicmFmaG9AZ21haWwuY29tIiwiaWF0IjoxNjg5MjIyNzk1LCJleHAiOjE2ODkyMjI4MTV9.DDzNXjTFKT04-TENcK-gfiDtD6_df4MZh75C5YFnw0Y
 
 ### CREATE USER
 POST http://localhost:8000/users
@@ -27,3 +27,7 @@ Content-Type: application/json
 
 ### LOGOUT
 DELETE http://localhost:8000/logout
+
+### SHOW PRODUCTS
+GET http://localhost:8000/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJSYWZobyIsImVtYWlsIjoicmFmaG9AZ21haWwuY29tIiwiaWF0IjoxNjg5MjIyODM1LCJleHAiOjE2ODkyMjI4NTV9.bps2RZOATffeFb0jmjGF2wYZgqMFFpDHRnPJfSGdX1M

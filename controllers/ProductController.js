@@ -1,6 +1,7 @@
 import Product from "../models/ProductModel.js";
 import path from "path";
 import fs from "fs";
+import randomstring from "randomstring";
 
 export const getProducts = async (req, res)=>{
     try {
@@ -30,7 +31,8 @@ export const saveProduct = (req, res)=>{
     const file = req.files.file;
     const fileSize = file.data.length;
     const extension = path.extname(file.name);
-    const fileName = file.md5 + extension;
+    // const fileName = file.md5 + extension;
+    const fileName = `${randomstring.generate(6)}_${Date.now() + extension}`;
     const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
     const allowedType = ['.png', '.jpg', '.jpeg'];
 
@@ -69,7 +71,8 @@ export const updateProduct = async (req, res)=>{
         const file = req.files.file;
         const fileSize = file.data.length;
         const extension = path.extname(file.name);
-        fileName = file.md5 + extension;
+        // fileName = file.md5 + extension;
+        fileName = `${randomstring.generate(6)}_${Date.now() + extension}`;
         const allowedType = ['.png', '.jpg', '.jpeg'];
 
         // validasi extension file upload
@@ -79,7 +82,9 @@ export const updateProduct = async (req, res)=>{
         if(fileSize > 1000000) return res.status(422).json({msg: "Image must be less than 1MB"});
 
         const filePath = `./public/images/${product.image}`;
-        fs.unlinkSync(filePath); // menghapus file
+        if (fs.existsSync(filePath)) { // cek apakah file exist
+            fs.unlinkSync(filePath); // menghapus file
+        }
 
         // Upload file
         const dir = `./public/images/${fileName}`;
@@ -114,7 +119,10 @@ export const deleteProduct = async (req, res)=>{
 
     try {
         const filePath = `./public/images/${product.image}`;
-        fs.unlinkSync(filePath); // menghapus file
+        if (fs.existsSync(filePath)) { // cek apakah file exist
+            fs.unlinkSync(filePath); // menghapus file
+        }
+        
         
         await Product.destroy({ //menghapus data pada database
             where:{
