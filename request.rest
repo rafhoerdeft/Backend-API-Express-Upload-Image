@@ -7,10 +7,10 @@ POST http://localhost:8000/users
 Content-Type: application/json
 
 {
-    "name": "Erdeft",
-    "email": "erdeft@gmail.com",
-    "password": "12345",
-    "confPassword": "12345"
+    "name": "ErdeftNew3",
+    "email": "erdeft3@gmail.com",
+    "password": "@Rafho123",
+    "confPassword": "@Rafho123"
 }
 
 ### REFRESH TOKEN
