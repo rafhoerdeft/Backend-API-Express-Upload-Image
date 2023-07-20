@@ -2,11 +2,55 @@ import Product from "../models/ProductModel.js";
 import path from "path";
 import fs from "fs";
 import randomstring from "randomstring";
+import { Op } from "sequelize";
 
 export const getProducts = async (req, res)=>{
     try {
         const response = await Product.findAll();
         res.json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const getProductsPaging = async (req, res)=>{
+    const page = parseInt(req.query.page) || 0;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search || "";
+    const offset = limit * page;
+    const totalRows = await Product.count({
+        where: {
+            [Op.or]: [{name: {
+                [Op.like]: `%${search}%`
+            }}, {url: {
+                [Op.like]: `%${search}%`
+            }}]
+        }
+    });
+    const totalPage = Math.ceil(totalRows / limit); // pembulatan keatas (ex: 10,2 => 11)
+
+    try {
+        const result = await Product.findAll({
+            where: {
+                [Op.or]: [{name: {
+                    [Op.like]: `%${search}%`
+                }}, {url: {
+                    [Op.like]: `%${search}%`
+                }}]
+            }, 
+            offset: offset,
+            limit: limit,
+            order: [
+                ['id', 'DESC']
+            ]
+        });
+        res.json({
+            result: result,
+            page: page,
+            limit: limit,
+            totalRows: totalRows,
+            totalPage: totalPage
+        });
     } catch (error) {
         console.log(error.message);
     }

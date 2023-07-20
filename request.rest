@@ -31,3 +31,7 @@ DELETE http://localhost:8000/logout
 ### SHOW PRODUCTS
 GET http://localhost:8000/products
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJSYWZobyIsImVtYWlsIjoicmFmaG9AZ21haWwuY29tIiwiaWF0IjoxNjg5MjIyODM1LCJleHAiOjE2ODkyMjI4NTV9.bps2RZOATffeFb0jmjGF2wYZgqMFFpDHRnPJfSGdX1M
+
+### SHOW PRODUCTS PAGINATION
+GET http://localhost:8000/products/paging?search=&page=1&limit=2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJSYWZobyIsImVtYWlsIjoicmFmaG9AZ21haWwuY29tIiwiaWF0IjoxNjg5ODg1ODk5LCJleHAiOjE2ODk4ODU5MTl9.yiuMVfHiCom6dP2cJOWrHsIesoS9SnA6kPxzji1rqE4
